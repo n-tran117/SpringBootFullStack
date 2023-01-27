@@ -34,7 +34,7 @@ export class UserServiceService {
   }
 
   public editUser(id: number, user: User): Observable<User>{
-    return this.http.put<User>(`${this.Url}/users/${id}`, user, { responseType: 'text' as 'json'})
+    return this.http.put<User>(`${this.Url}/users/${id}`, user, { responseType: 'text' as 'json'});
   }
 
   keepUserId(id: number){

@@ -22,15 +22,14 @@ import com.example.demo.entity.UserType;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://${crossUrl}:4200")
 @RestController
 @RequestMapping("api/users")
 public class UserController {
 
 	@Autowired
 	UserService userService;
-	
-	
+
 	@GetMapping()
 	public List<User> GetUsers() {
 		return this.userService.FindAllUsers();
@@ -48,13 +47,12 @@ public class UserController {
 		}
 
 	}
-	
+
 	@PostMapping()
 	public ResponseEntity<User> AddUser(@Valid @RequestBody User user) {
-		
+
 		Optional<UserType> result = this.userService.FindAllUserTypes().stream().parallel()
-				.filter(e -> e.getType().equals(user.getUserType().getType()))
-				.findAny();
+				.filter(e -> e.getType().equals(user.getUserType().getType())).findAny();
 
 		try {
 			if (user != null && !result.isPresent()) {
@@ -75,8 +73,8 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity DeleteById(@PathVariable("id") Long id) {
 		User user = this.userService.deleteUser(id);
-		
-		if (user !=null) {
+
+		if (user != null) {
 			return ResponseEntity.ok(user);
 		} else {
 			return ResponseEntity.notFound().build();
@@ -87,14 +85,16 @@ public class UserController {
 	@PutMapping("/{id}")
 	public ResponseEntity updateUser(@RequestBody User user, @PathVariable("id") Long id) {
 
+		System.err.println(user);
+
+
 		User newuser = this.userService.updateUser(id, user);
-		
-		if (newuser !=null) {
+
+		if (newuser != null) {
 			return ResponseEntity.ok(newuser);
 		} else {
 			return ResponseEntity.notFound().build();
 		}
-
 
 	}
 

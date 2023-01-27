@@ -14,4 +14,8 @@ export class User {
         this.userType = userType;
     }
 
+    /*toString():string {
+      return "User [id=" + this.id + ", name=" + this.name + ", email=" + this.email + ", userType=" + this.userType + "]";
+    }*/
+
 }

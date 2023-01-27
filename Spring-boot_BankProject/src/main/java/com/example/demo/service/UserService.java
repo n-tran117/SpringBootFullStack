@@ -65,14 +65,15 @@ public class UserService {
 
 	public User updateUser(Long id, User user) {
 		Optional<User> userOpt = userRepo.findById(id);
-
+		
 		if (userOpt.isPresent()) {
 
 			Optional<User> newUser = userOpt.map(e-> {
 						if(!user.getName().isEmpty()) e.setName(user.getName());
 						
 						if(!user.getEmail().isEmpty()) e.setEmail(user.getEmail());
-						
+						System.err.println("USER TYPE");
+						System.err.println("USER TYPE : "+user.getUserType());
 						if(user.getUserType() != null) { 
 							e.setUserType(this.FindAllUserTypes().stream().parallel()
 									.filter(u -> u.getType().equals(user.getUserType().getType()))

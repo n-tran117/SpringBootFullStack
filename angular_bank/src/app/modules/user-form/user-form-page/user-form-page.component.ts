@@ -30,22 +30,23 @@ export class UserFormPageComponent{
     this.userTypeService.getUserTypes()
     .subscribe(response => this.userTypes=response);
     this.userId=this.userService.getUserId();
+
     if(this.userId!==0){
       this.userService.getUser(this.userId).subscribe(e =>
         this.oldUser = e);
     }
     this.oldUser.userType = this.userType;
+    console.log(this.userId)
   }
 
   onSubmit(){
 
     if(this.userId != 0){
-      this.userType != null ? this.user.userType = this.userType : this.user.userType = this.oldUser.userType;
+      this.user.userType = this.oldUser.userType;
       this.userService
       .editUser(this.userId,this.user)
       .subscribe(result => this.gotoHome());
       alert('User edited!')
-
     }else{
     this.user.userType = this.userType;
     this.userService

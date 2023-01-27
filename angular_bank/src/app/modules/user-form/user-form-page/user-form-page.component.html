@@ -1,5 +1,6 @@
 <div class="d-flex p-5 align-items-center justify-content-center">
     <div class="card text-white bg-dark p-4 col-md-4 align-items-center justify-content-center">
+
         <form (ngSubmit)="onSubmit()" #userForm="ngForm">
             <h2 class="text-center pt-4">Add User</h2>
             <div class="form-group py-1">
@@ -17,6 +18,7 @@
                 <option *ngFor="let userType of userTypes" value="{{userType.type}}">{{userType.type}}</option>
               </select>
             </div>
+            {{oldUser | json}}
             <div class="form-group py-4">
                 <input type="submit" class="btn btn-success" value="Submit">
             </div>

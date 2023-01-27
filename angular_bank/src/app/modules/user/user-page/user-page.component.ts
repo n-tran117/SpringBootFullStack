@@ -34,7 +34,7 @@ export class UserPageComponent {
 
   constructor(private userTypeService: UserTypeServiceService, private userService: UserServiceService, private router: Router, private route: ActivatedRoute){
   }
-  
+
   ngOnInit(): void {
     this.userTypeService.getUserTypes()
     .subscribe(response => this.userTypes=response);
@@ -51,7 +51,7 @@ export class UserPageComponent {
     if(id != undefined){
       this.id=id;
       this.userService.keepUserId(this.id);
-    } 
+    }
     this.router.navigate(['/user-form']);
   }
 
@@ -68,8 +68,6 @@ export class UserPageComponent {
       property,
       order: order === 'asc' ? 'desc' : 'asc'
     }
-
-    console.log(this.optionSort);
   }
 
   showArrows(option: number): void {
@@ -91,7 +89,7 @@ export class UserPageComponent {
         this.hiddenArrowUp4 = (this.hiddenArrowUp4 === 'none') ? 'inline-block' : 'none';
         this.hiddenArrowDown4 = (this.hiddenArrowDown4 === 'none') ? 'inline-block' : 'none';
         break;
-    }     
+    }
   }
 
 }

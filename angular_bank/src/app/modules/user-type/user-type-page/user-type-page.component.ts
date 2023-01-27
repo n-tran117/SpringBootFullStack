@@ -17,12 +17,12 @@ export class UserTypePageComponent {
   hiddenArrowDown1: string = 'none';
 
   id:number = 0;
-  
+
   optionSort: { property: string | null, order: string } = { property: null, order: 'asc' }
 
   constructor(private userTypeService: UserTypeServiceService, private userService: UserServiceService, private router: Router, private route: ActivatedRoute){
   }
-  
+
   ngOnInit(): void {
     this.userTypeService.getUserTypes()
     .subscribe(response => this.userTypes=response);
@@ -37,7 +37,7 @@ export class UserTypePageComponent {
     if(id != undefined){
       this.id=id;
       this.userTypeService.keepUserTypeId(this.id);
-    } 
+    }
     this.router.navigate(['/user-type-form'])
   }
 
@@ -59,8 +59,6 @@ export class UserTypePageComponent {
       property,
       order: order === 'asc' ? 'desc' : 'asc'
     }
-
-    console.log(this.optionSort);
   }
 
   showArrows(option: number): void {
